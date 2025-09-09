@@ -63,6 +63,15 @@ def require_role(*allowed: Role):
 # APP E "BANCO" (JSON)
 # =========================
 app = FastAPI(title="Cadastro de Funcionários (RBAC)")
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],      # libera qualquer site (para teste)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 ARQUIVO_BANCO = "banco_funcionarios.json"
 banco: list[dict] = []
